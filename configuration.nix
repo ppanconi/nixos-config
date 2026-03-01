@@ -8,6 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+     
+     # add custom modules:
+     # ./vendor/modules/my-service.nix
+     # ./vendor/modules/hyprland.nix	
     ];
 
   # Bootloader.
@@ -48,12 +52,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.panks = {
     isNormalUser = true;
@@ -65,8 +63,23 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Hyperland
+  # Hyprland
   programs.hyprland.enable = true;
+
+  # NVIDIA PRIME offload (on-demand) for Wayland/Hyprland
+  hardware.graphics.enable = true;
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
+    nvidiaSettings = true;
+    prime = {
+      offload.enable = true;
+      offload.enableOffloadCmd = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+  };
  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -76,6 +89,8 @@
      kitty
      firefox
      git
+     tree
+     jq
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
