@@ -18,8 +18,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Prefer the default kernel package set for better NVIDIA module compatibility.
+  boot.kernelPackages = pkgs.linuxPackages;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -65,10 +65,15 @@
 
   # Hyprland
   programs.hyprland.enable = true;
+  # Nota: questa opzione seleziona anche il driver kernel/userspace su NixOS;
+  # non abilita Xorg da sola (services.xserver.enable resta false).
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # NVIDIA PRIME offload (on-demand) for Wayland/Hyprland
   hardware.graphics.enable = true;
   hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    open = false;
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = true;
