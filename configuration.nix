@@ -96,7 +96,12 @@
      git
      tree
      jq
+     cudaPackages.cudatoolkit
   ];
+
+  # nvcc from cuda_nvcc needs explicit include/lib paths on this split CUDA layout.
+  environment.variables.NVCC_PREPEND_FLAGS =
+    "-I${pkgs.cudaPackages.cudatoolkit}/include -L${pkgs.cudaPackages.cudatoolkit}/lib";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
