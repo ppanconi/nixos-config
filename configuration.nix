@@ -73,8 +73,25 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    input.General.ClassicBondedOnly = false;
   };
   services.blueman.enable = true;
+
+  services.kanata = {
+    enable = true;
+    keyboards.apple-style = {
+      config = ''
+        (defsrc
+          lctl lmet rmet
+        )
+
+        (deflayer default
+          lmet lctl rctl
+        )
+      '';
+    };
+  };
+
   # Nota: questa opzione seleziona anche il driver kernel/userspace su NixOS;
   # non abilita Xorg da sola (services.xserver.enable resta false).
   services.xserver.videoDrivers = [ "nvidia" ];
