@@ -18,9 +18,9 @@
     settings = {
       "$mod" = "SUPER";
       monitor = [
-	"desc:HP Inc. HP V24i 1CR02906ZG,preferred,auto,auto"
-	"desc:BOE 0x0C8E,preferred,auto-right,auto"
-	",preferred,auto,auto"
+	    "desc:BOE 0x0C8E,preferred,auto,auto"
+	    "desc:HP Inc. HP V24i 1CR02906ZG,preferred,auto-left,auto"
+	    ",preferred,auto,auto"
       ];
       exec-once = [
         "polkit-gnome-authentication-agent-1"
@@ -41,6 +41,10 @@
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
+        "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, right, movewindow, r"
+        "$mod SHIFT, up, movewindow, u"
+        "$mod SHIFT, down, movewindow, d"
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
         "$mod, 3, workspace, 3"
