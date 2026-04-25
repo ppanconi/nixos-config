@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -33,6 +33,9 @@
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Work around intermittent dbus-broker reload timeouts during nixos-rebuild switch.
+  systemd.services.dbus-broker.reloadIfChanged = lib.mkForce false;
 
   # Set your time zone.
   time.timeZone = "Europe/Rome";
@@ -65,6 +68,9 @@
 
   # Hyprland
   programs.hyprland.enable = true;
+  programs.hyprland.withUWSM = true;
+  security.pam.services.hyprlock = {};
+  services.blueman.enable = true;
   # Nota: questa opzione seleziona anche il driver kernel/userspace su NixOS;
   # non abilita Xorg da sola (services.xserver.enable resta false).
   services.xserver.videoDrivers = [ "nvidia" ];

@@ -13,3 +13,6 @@
 - `nixos-option <option.path>`
 - `nix search nixpkgs <term>`
 - `nix eval nixpkgs#<pkg>.meta`
+
+## Repo docs
+- Hyprland keybindings: ./hyprland-keybindings.md
