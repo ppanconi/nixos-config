@@ -70,6 +70,10 @@
   programs.hyprland.enable = true;
   programs.hyprland.withUWSM = true;
   security.pam.services.hyprlock = {};
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
   services.blueman.enable = true;
   # Nota: questa opzione seleziona anche il driver kernel/userspace su NixOS;
   # non abilita Xorg da sola (services.xserver.enable resta false).
