@@ -123,6 +123,7 @@
      git
      tree
      jq
+     zed-editor
      cudaPackages.cudatoolkit
   ];
 

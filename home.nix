@@ -17,7 +17,11 @@
 
     settings = {
       "$mod" = "SUPER";
-      monitor = ",preferred,auto,1";
+      monitor = [
+	"desc:HP Inc. HP V24i 1CR02906ZG,preferred,auto,auto"
+	"desc:BOE 0x0C8E,preferred,auto-right,auto"
+	",preferred,auto,auto"
+      ];
       exec-once = [
         "polkit-gnome-authentication-agent-1"
         "waybar"
