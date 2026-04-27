@@ -24,6 +24,8 @@
       ];
       exec-once = [
         "polkit-gnome-authentication-agent-1"
+        "blueman-applet"
+        "nm-applet --indicator"
         "waybar"
       ];
 

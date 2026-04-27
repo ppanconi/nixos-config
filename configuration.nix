@@ -4,14 +4,39 @@
 
 { config, pkgs, lib, ... }:
 
+# 1. MOVE THE 'let' BLOCK HERE (Before the '{' or right after the function arguments)
+let
+    pulse-cookie = pkgs.python3.pkgs.buildPythonApplication rec {
+    pname = "pulse-cookie";
+    version = "1.0";
+    src = pkgs.fetchPypi {
+      inherit pname version;
+      sha256 = "sha256-ZURSXfChq2k8ktKO6nc6AuVaAMS3eOcFkiKahpq4ebU=";
+    };
+
+    pyproject = true;
+    # Add setuptools-scm to this list
+    nativeBuildInputs = with pkgs.python3.pkgs; [
+      setuptools
+      setuptools-scm
+      wheel
+    ];
+
+    propagatedBuildInputs = with pkgs.python3.pkgs; [
+      pyqt6
+      pyqt6-webengine
+    ];
+    doCheck = false;
+  };
+in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-     
+
      # add custom modules:
      # ./vendor/modules/my-service.nix
-     # ./vendor/modules/hyprland.nix	
+     # ./vendor/modules/hyprland.nix
     ];
 
   # Bootloader.
@@ -30,6 +55,9 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager-openconnect
+  ];
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -73,6 +101,13 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    settings = {
+      General.FastConnectable = true;
+      Policy = {
+        ReconnectAttempts = 12;
+        ReconnectIntervals = "1,2,4,8,16,32,64";
+      };
+    };
     input.General.ClassicBondedOnly = false;
   };
   services.blueman.enable = true;
@@ -112,9 +147,10 @@
       nvidiaBusId = "PCI:1:0:0";
     };
   };
- 
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
   environment.systemPackages = with pkgs; [
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
@@ -123,6 +159,9 @@
      git
      tree
      jq
+     openconnect
+     pulse-cookie  # This now refers to the variable defined above
+     networkmanagerapplet
      zed-editor
      cudaPackages.cudatoolkit
   ];
