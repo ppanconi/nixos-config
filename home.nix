@@ -309,6 +309,7 @@
     brightnessctl
     grim
     hyprpicker
+    mise
     pavucontrol
     pamixer
     playerctl

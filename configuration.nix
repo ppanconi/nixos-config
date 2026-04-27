@@ -62,6 +62,9 @@ in
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Per-project development environments.
+  programs.direnv.enable = true;
+
   # Work around intermittent dbus-broker reload timeouts during nixos-rebuild switch.
   systemd.services.dbus-broker.reloadIfChanged = lib.mkForce false;
 
