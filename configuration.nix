@@ -114,17 +114,7 @@ in
 
   services.kanata = {
     enable = true;
-    keyboards.apple-style = {
-      config = ''
-        (defsrc
-          lctl lmet rmet
-        )
-
-        (deflayer default
-          lmet lctl rctl
-        )
-      '';
-    };
+    keyboards.apple-style.configFile = ./kanata-apple-magic-uk.kbd;
   };
 
   # Nota: questa opzione seleziona anche il driver kernel/userspace su NixOS;
