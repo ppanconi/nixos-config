@@ -47,6 +47,8 @@
         "$mod SHIFT, right, movewindow, r"
         "$mod SHIFT, up, movewindow, u"
         "$mod SHIFT, down, movewindow, d"
+        "$mod, TAB, workspace, +1"
+        "$mod SHIFT, TAB, workspace, -1"
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
         "$mod, 3, workspace, 3"
