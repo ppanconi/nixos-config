@@ -22,6 +22,8 @@
 
 (defalias
   cmd (layer-while-held cmd)
+  opt (layer-while-held opt)
+  os  (layer-while-held opt-shift)
 )
 
 (defsrc
@@ -39,7 +41,7 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    ret
   esc  a    s    d    f    g    h    j    k    l    ;    '    \
   lsft 102d z    x    c    v    b    n    m    ,    .    /    rsft
-  lmet lalt @cmd           spc            @cmd ralt left down up rght
+  lmet @opt @cmd           spc            @cmd @opt left down up rght
 )
 
 (deflayer cmd
@@ -49,4 +51,22 @@
   _    C-a C-s C-d C-f C-g C-h C-j C-k C-l _    _    _
   _    _    C-z C-x C-c C-v C-b C-n C-m _    _    _    _
   _    _    _              M-spc          _    _    home C-end C-home end
+)
+
+(deflayer opt
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    A-q  A-w  A-e  A-r  A-t  A-y  A-u  A-i  A-o  A-p  _    _    _
+  _    A-a  A-s  A-d  A-f  A-g  A-h  A-j  A-k  A-l  _    _    _
+  @os  _    A-z  A-x  A-c  A-v  A-b  A-n  A-m  _    _    _    @os
+  _    _    _              A-spc          _    _    C-left down up C-rght
+)
+
+(deflayer opt-shift
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    A-S-q A-S-w A-S-e A-S-r A-S-t A-S-y A-S-u A-S-i A-S-o A-S-p _ _ _
+  _    A-S-a A-S-s A-S-d A-S-f A-S-g A-S-h A-S-j A-S-k A-S-l _ _ _
+  _    _    A-S-z A-S-x A-S-c A-S-v A-S-b A-S-n A-S-m _ _ _ _
+  _    _    _              A-S-spc        _    _    C-S-left down up C-S-rght
 )
