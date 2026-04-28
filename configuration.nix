@@ -28,6 +28,10 @@ let
     ];
     doCheck = false;
   };
+
+  codexLatest = pkgs.writeShellScriptBin "codex" ''
+    exec ${pkgs.nix}/bin/nix run --refresh github:sadjow/codex-cli-nix -- "$@"
+  '';
 in
 {
   imports =
@@ -166,6 +170,7 @@ in
      networkmanagerapplet
      zed-editor
      cudaPackages.cudatoolkit
+     codexLatest
   ];
 
   # nvcc from cuda_nvcc needs explicit include/lib paths on this split CUDA layout.
