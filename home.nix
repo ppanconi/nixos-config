@@ -31,7 +31,8 @@
 
       bind = [
         "$mod, RETURN, exec, kitty"
-        "$mod, D, exec, wofi --show drun"
+        "$mod, D, exec, rofi -show drun"
+        "$mod, TAB, exec, hypr-window-switch"
         "$mod, Q, killactive,"
         "$mod SHIFT, E, exit,"
         "$mod, F, fullscreen,"
@@ -65,7 +66,7 @@
         "$mod SHIFT, 7, movetoworkspace, 7"
         "$mod SHIFT, 8, movetoworkspace, 8"
         "$mod SHIFT, 9, movetoworkspace, 9"
-        "$mod SHIFT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+        "$mod SHIFT, V, exec, cliphist list | rofi -dmenu -p Clipboard | cliphist decode | wl-copy"
         ", Print, exec, grim -g \"$(slurp)\" - | wl-copy"
         "SHIFT, Print, exec, grim - | wl-copy"
         ", XF86AudioRaiseVolume, exec, pamixer -i 5"
@@ -215,22 +216,14 @@
     '';
   };
 
-  programs.wofi = {
+  programs.rofi = {
     enable = true;
-    settings = {
+    extraConfig = {
+      modi = "drun";
+      show-icons = true;
+      matching = "fuzzy";
       width = 700;
-      height = 400;
-      show = "drun";
-      prompt = "Run";
-      allow_markup = true;
-      insensitive = true;
     };
-    style = ''
-      window {
-        background-color: #11111b;
-        color: #cdd6f4;
-      }
-    '';
   };
 
   services.mako = {
@@ -311,5 +304,17 @@
     slurp
     swappy
     wl-clipboard
+    (writeShellScriptBin "hypr-window-switch" ''
+      selected=$(
+        hyprctl clients -j \
+          | ${jq}/bin/jq -r '.[] | select(.mapped) | "\(.address) | [\(.workspace.name)] \(.class): \(.title)"' \
+          | rofi -dmenu -p Window
+      )
+
+      if [ -n "$selected" ]; then
+        address=''${selected%% | *}
+        hyprctl dispatch focuswindow "address:$address"
+      fi
+    '')
   ];
 }
