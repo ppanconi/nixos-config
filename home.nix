@@ -47,8 +47,6 @@
         "$mod SHIFT, right, movewindow, r"
         "$mod SHIFT, up, movewindow, u"
         "$mod SHIFT, down, movewindow, d"
-        "$mod, TAB, workspace, +1"
-        "$mod SHIFT, TAB, workspace, -1"
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
         "$mod, 3, workspace, 3"
@@ -77,11 +75,7 @@
         ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
       ];
 
-      binde = [
-        "$mod CTRL, H, resizeactive, -40 0"
-        "$mod CTRL, L, resizeactive, 40 0"
-        "$mod CTRL, K, resizeactive, 0 -40"
-        "$mod CTRL, J, resizeactive, 0 40"
+      bi1nde = [
         "$mod CTRL, left, resizeactive, -40 0"
         "$mod CTRL, right, resizeactive, 40 0"
         "$mod CTRL, up, resizeactive, 0 -40"
@@ -97,7 +91,7 @@
         kb_layout = "us";
         follow_mouse = 1;
         touchpad = {
-          natural_scroll = false;
+          natural_scroll = true;
         };
       };
 
