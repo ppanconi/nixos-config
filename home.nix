@@ -8,12 +8,35 @@
 
   programs.home-manager.enable = true;
 
+  xdg.configFile."zed/settings.json".text = builtins.toJSON {
+    cursor_blink = true;
+    cursor_shape = "bar";
+    current_line_highlight = "all";
+    hide_mouse = "on_typing_and_movement";
+    rounded_selection = true;
+    scroll_sensitivity = 1.25;
+    fast_scroll_sensitivity = 5.0;
+    vertical_scroll_margin = 4;
+    scrollbar = {
+      show = "auto";
+      cursors = true;
+      git_diff = true;
+      search_results = true;
+      selected_text = true;
+      selected_symbol = true;
+      diagnostics = "all";
+    };
+    terminal = {
+      blinking = "on";
+      cursor_shape = "bar";
+    };
+  } + "\n";
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
     portalPackage = null;
-    # Disable HM's systemd glue when launching Hyprland via UWSM on NixOS.
-    systemd.enable = false;
+    systemd.enable = true;
 
     settings = {
       "$mod" = "SUPER";
@@ -100,6 +123,10 @@
       input = {
         kb_layout = "us";
         follow_mouse = 1;
+        repeat_rate = 50;
+        repeat_delay = 220;
+        accel_profile = "flat";
+        sensitivity = 0.15;
         touchpad = {
           natural_scroll = true;
         };

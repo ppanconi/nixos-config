@@ -32,6 +32,10 @@ let
   codexLatest = pkgs.writeShellScriptBin "codex" ''
     exec ${pkgs.nix}/bin/nix run --refresh github:sadjow/codex-cli-nix -- "$@"
   '';
+
+  zedNvidia = pkgs.writeShellScriptBin "zedn" ''
+    exec nvidia-offload ${lib.getExe pkgs.zed-editor} "$@"
+  '';
 in
 {
   imports =
@@ -83,8 +87,8 @@ in
     ];
   };
 
-  # Work around intermittent dbus-broker reload timeouts during nixos-rebuild switch.
-  systemd.services.dbus-broker.reloadIfChanged = lib.mkForce false;
+  # Use the classic D-Bus daemon; dbus-broker can fail during rebuild switches.
+  services.dbus.implementation = lib.mkForce "dbus";
 
   # Set your time zone.
   time.timeZone = "Europe/Rome";
@@ -118,7 +122,7 @@ in
   # Hyprland
   programs.hyprland = {
     enable = true;
-    withUWSM = true;
+    withUWSM = false;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
@@ -179,6 +183,7 @@ in
      pulse-cookie  # This now refers to the variable defined above
      networkmanagerapplet
      zed-editor
+     zedNvidia
      cudaPackages.cudatoolkit
      codexLatest
   ];
