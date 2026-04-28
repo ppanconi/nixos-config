@@ -41,7 +41,7 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    ret
   esc  a    s    d    f    g    h    j    k    l    ;    '    \
   lsft 102d z    x    c    v    b    n    m    ,    .    /    rsft
-  lmet @opt @cmd           spc            @cmd @opt left down up rght
+  lmet @opt @cmd           spc            @cmd lalt left down up rght
 )
 
 (deflayer cmd
