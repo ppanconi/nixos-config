@@ -7,6 +7,7 @@ Source: `home.nix` (`wayland.windowManager.hyprland.settings`).
 | `SUPER + RETURN` | Open terminal (`kitty`) |
 | `SUPER + D` | Open app launcher (`rofi -show drun`) |
 | `SUPER + TAB` | Switch windows (`hypr-window-switch`) |
+| `ALT + TAB` | Switch to previously focused window |
 | `SUPER + Q` | Close active window |
 | `SUPER + SHIFT + E` | Exit Hyprland |
 | `SUPER + F` | Toggle fullscreen |

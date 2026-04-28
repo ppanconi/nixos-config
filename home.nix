@@ -33,6 +33,7 @@
         "$mod, RETURN, exec, kitty"
         "$mod, D, exec, rofi -show drun"
         "$mod, TAB, exec, hypr-window-switch"
+        "ALT, TAB, focuscurrentorlast"
         "$mod, Q, killactive,"
         "$mod SHIFT, E, exit,"
         "$mod, F, fullscreen,"
@@ -305,9 +306,15 @@
     swappy
     wl-clipboard
     (writeShellScriptBin "hypr-window-switch" ''
+      active=$(hyprctl activewindow -j | ${jq}/bin/jq -r '.address // ""')
+
       selected=$(
         hyprctl clients -j \
-          | ${jq}/bin/jq -r '.[] | select(.mapped) | "\(.address) | [\(.workspace.name)] \(.class): \(.title)"' \
+          | ${jq}/bin/jq -r --arg active "$active" '
+              sort_by(if .address == $active then 999999 else .focusHistoryID end)[]
+              | select(.mapped)
+              | "\(.address) | [\(.workspace.name)] \(.class): \(.title)"
+            ' \
           | rofi -dmenu -p Window
       )
 
