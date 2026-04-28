@@ -73,6 +73,16 @@ in
   # Per-project development environments.
   programs.direnv.enable = true;
 
+  # Allow Zed's downloaded Codex ACP binary to run on NixOS.
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      libcap
+      openssl
+      zlib
+    ];
+  };
+
   # Work around intermittent dbus-broker reload timeouts during nixos-rebuild switch.
   systemd.services.dbus-broker.reloadIfChanged = lib.mkForce false;
 
