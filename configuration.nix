@@ -160,6 +160,7 @@ in
      git
      tree
      jq
+     htop
      openconnect
      pulse-cookie  # This now refers to the variable defined above
      networkmanagerapplet
