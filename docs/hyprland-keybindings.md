@@ -10,6 +10,7 @@ Source: `home.nix` (`wayland.windowManager.hyprland.settings`).
 | `ALT + TAB` | Switch to previously focused window |
 | `SUPER + Q` | Close active window |
 | `SUPER + SHIFT + E` | Exit Hyprland |
+| `SUPER + SHIFT + L` | Lock screen (`loginctl lock-session`) |
 | `SUPER + F` | Toggle fullscreen |
 | `SUPER + H / J / K / L` | Move focus left/down/up/right |
 | `SUPER + Arrow keys` | Move focus left/down/up/right |

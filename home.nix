@@ -59,6 +59,7 @@
         "ALT, TAB, focuscurrentorlast"
         "$mod, Q, killactive,"
         "$mod SHIFT, E, exit,"
+        "$mod SHIFT, L, exec, loginctl lock-session"
         "$mod, F, fullscreen,"
         "$mod, H, movefocus, l"
         "$mod, L, movefocus, r"
@@ -133,8 +134,8 @@
       };
 
       general = {
-        gaps_in = 5;
-        gaps_out = 10;
+        gaps_in = 2;
+        gaps_out = 4;
         border_size = 2;
         "col.active_border" = "rgb(89b4fa)";
         "col.inactive_border" = "rgb(313244)";
