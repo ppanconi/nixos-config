@@ -77,11 +77,19 @@
         ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
       ];
 
-      bi1nde = [
+      binde = [
         "$mod CTRL, left, resizeactive, -40 0"
         "$mod CTRL, right, resizeactive, 40 0"
         "$mod CTRL, up, resizeactive, 0 -40"
         "$mod CTRL, down, resizeactive, 0 40"
+        "$mod CTRL, H, resizeactive, -40 0"
+        "$mod CTRL, L, resizeactive, 40 0"
+        "$mod CTRL, K, resizeactive, 0 -40"
+        "$mod CTRL, J, resizeactive, 0 40"
+        "$mod, home, resizeactive, -40 0"
+        "$mod, end, resizeactive, 40 0"
+        "$mod CTRL, home, resizeactive, 0 -40"
+        "$mod CTRL, end, resizeactive, 0 40"
       ];
 
       bindm = [

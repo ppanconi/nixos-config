@@ -30,4 +30,7 @@ Source: `home.nix` (`wayland.windowManager.hyprland.settings`).
 
 ## Notes
 - `SUPER` is the `$mod` key in `home.nix`.
+- With the Kanata Apple keyboard layer, physical `Control + Command + Arrow`
+  is emitted as `SUPER + Home/End`, so those variants are also bound for
+  resizing.
 - Media/brightness keys depend on keyboard support and the corresponding packages.
