@@ -342,6 +342,12 @@
     slurp
     swappy
     wl-clipboard
+    (writeShellScriptBin "hypr-laptop-off" ''
+      hyprctl keyword monitor "desc:BOE 0x0C8E,disable"
+    '')
+    (writeShellScriptBin "hypr-laptop-on" ''
+      hyprctl keyword monitor "desc:BOE 0x0C8E,preferred,auto,auto"
+    '')
     (writeShellScriptBin "hypr-window-switch" ''
       active=$(hyprctl activewindow -j | ${jq}/bin/jq -r '.address // ""')
 
