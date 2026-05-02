@@ -149,7 +149,7 @@ in
   # Remote desktop/game streaming host for Moonlight clients.
   services.sunshine = {
     enable = true;
-    autoStart = true;
+    autoStart = false;
     capSysAdmin = true; # Required for Wayland/DRM capture.
     openFirewall = true;
   };
@@ -211,7 +211,10 @@ in
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
