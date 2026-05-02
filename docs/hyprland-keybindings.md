@@ -12,6 +12,7 @@ Source: `home.nix` (`wayland.windowManager.hyprland.settings`).
 | `SUPER + SHIFT + E` | Exit Hyprland |
 | `SUPER + SHIFT + L` | Lock screen (`loginctl lock-session`) |
 | `SUPER + F` | Toggle fullscreen |
+| `SUPER + V` | Toggle floating for the active window |
 | `SUPER + H / J / K / L` | Move focus left/down/up/right |
 | `SUPER + Arrow keys` | Move focus left/down/up/right |
 | `SUPER + 1..9` | Switch to workspace 1..9 |
