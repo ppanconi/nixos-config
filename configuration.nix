@@ -146,6 +146,14 @@ in
     keyboards.apple-style.configFile = ./kanata-apple-magic-uk.kbd;
   };
 
+  # Remote desktop/game streaming host for Moonlight clients.
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true; # Required for Wayland/DRM capture.
+    openFirewall = true;
+  };
+
   # Nota: questa opzione seleziona anche il driver kernel/userspace su NixOS;
   # non abilita Xorg da sola (services.xserver.enable resta false).
   services.xserver.videoDrivers = [ "nvidia" ];
