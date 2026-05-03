@@ -17,6 +17,7 @@
   ;;
   linux-dev-names-include (
      "Paolo’s Magic Keyboard"
+     "Keyboard passthrough"
   )
 )
 
