@@ -112,7 +112,7 @@ in
   users.users.panks = {
     isNormalUser = true;
     description = "panks";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "uinput" ];
     packages = with pkgs; [];
   };
 
@@ -147,11 +147,24 @@ in
   };
 
   # Remote desktop/game streaming host for Moonlight clients.
+  services.avahi.publish.enable = true;
+  services.avahi.publish.userServices = true;
+  hardware.uinput.enable = true;
+  services.sunshine.package = pkgs.sunshine.override {
+    cudaSupport = true;
+    cudaPackages = pkgs.cudaPackages;
+  };
   services.sunshine = {
     enable = true;
     autoStart = false;
     capSysAdmin = true; # Required for Wayland/DRM capture.
     openFirewall = true;
+    settings = {
+      # Avoid wlroots capture on Hyprland/NVIDIA; it can freeze the compositor
+      # when Moonlight starts a stream. KMS uses the capability above.
+      capture = "kms";
+      encoder = "nvenc";
+    };
   };
 
   # Nota: questa opzione seleziona anche il driver kernel/userspace su NixOS;
