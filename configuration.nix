@@ -36,6 +36,19 @@ let
   zedNvidia = pkgs.writeShellScriptBin "zedn" ''
     exec nvidia-offload ${lib.getExe pkgs.zed-editor} "$@"
   '';
+
+  chromiumNvidia = pkgs.writeShellScriptBin "chromium-nvidia" ''
+    exec nvidia-offload ${lib.getExe pkgs.chromium} --ozone-platform=wayland "$@"
+  '';
+
+  chromiumWebgpu = pkgs.writeShellScriptBin "chromium-webgpu" ''
+    exec nvidia-offload ${lib.getExe pkgs.chromium} \
+      --ozone-platform=x11 \
+      --use-angle=vulkan \
+      --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan \
+      --enable-unsafe-webgpu \
+      "$@"
+  '';
 in
 {
   imports =
@@ -196,6 +209,7 @@ in
      wget
      kitty
      firefox
+     chromium
      git
      tree
      jq
@@ -205,6 +219,8 @@ in
      networkmanagerapplet
      zed-editor
      zedNvidia
+     chromiumNvidia
+     chromiumWebgpu
      cudaPackages.cudatoolkit
      codexLatest
   ];
