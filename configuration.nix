@@ -91,7 +91,10 @@ in
   programs.direnv.enable = true;
 
   # Local virtual machines.
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.vhostUserPackages = [ pkgs.virtiofsd ];
+  };
   programs.virt-manager.enable = true;
 
   # Allow Zed's downloaded Codex ACP binary to run on NixOS.
