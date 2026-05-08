@@ -90,6 +90,10 @@ in
   # Per-project development environments.
   programs.direnv.enable = true;
 
+  # Local virtual machines.
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
   # Allow Zed's downloaded Codex ACP binary to run on NixOS.
   programs.nix-ld = {
     enable = true;
@@ -125,7 +129,7 @@ in
   users.users.panks = {
     isNormalUser = true;
     description = "panks";
-    extraGroups = [ "networkmanager" "wheel" "video" "input" "uinput" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "uinput" "libvirtd" ];
     packages = with pkgs; [];
   };
 
