@@ -47,9 +47,24 @@ from Apple hardware.
 ├── home.nix                      # Home Manager user configuration
 ├── hardware-configuration.nix    # Machine-specific hardware configuration
 ├── kanata-apple-magic-uk.kbd     # Kanata keyboard mapping
+├── AGENTS.md                     # Codex assistant instructions for this repo
 ├── docs/                         # Notes and operational documentation
 ├── scripts/                      # Maintenance and reference helpers
 └── vendor/nixpkgs                # Optional local nixpkgs source checkout
+```
+
+## Codex Usage
+
+Codex-specific project instructions are kept in `AGENTS.md`. Read that file
+before asking Codex to change this repository; it defines the expected workflow,
+which files should be edited, which files should be avoided, and how NixOS
+options and packages should be verified.
+
+When requesting configuration changes from Codex, expect a small incremental
+patch and verification with:
+
+```sh
+nix flake check
 ```
 
 ## Prerequisites
