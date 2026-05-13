@@ -444,6 +444,41 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1778003029,
+        "narHash": "sha256-q/nkKLDtHIyLjZpKhWk3cSK5IYsFqtMd6UtXF3ddjgA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0c88e1f2bdb93d5999019e99cb0e61e1fe2af4c5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-25.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "ocgo": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1778694052,
+        "narHash": "sha256-jIzPxjYyGHb6fj1/3QEG83JQrH3uL1ktoUEw2o8Qahk=",
+        "owner": "ppanconi",
+        "repo": "ocgo",
+        "rev": "f3d06d8b795090c3c8219c676fabc774f601ba24",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ppanconi",
+        "ref": "v1.0.1",
+        "repo": "ocgo",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -471,7 +506,8 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "ocgo": "ocgo"
       }
     },
     "systems": {
