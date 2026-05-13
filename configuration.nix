@@ -6,29 +6,6 @@
 
 # 1. MOVE THE 'let' BLOCK HERE (Before the '{' or right after the function arguments)
 let
-    pulse-cookie = pkgs.python3.pkgs.buildPythonApplication rec {
-    pname = "pulse-cookie";
-    version = "1.0";
-    src = pkgs.fetchPypi {
-      inherit pname version;
-      sha256 = "sha256-ZURSXfChq2k8ktKO6nc6AuVaAMS3eOcFkiKahpq4ebU=";
-    };
-
-    pyproject = true;
-    # Add setuptools-scm to this list
-    nativeBuildInputs = with pkgs.python3.pkgs; [
-      setuptools
-      setuptools-scm
-      wheel
-    ];
-
-    propagatedBuildInputs = with pkgs.python3.pkgs; [
-      pyqt6
-      pyqt6-webengine
-    ];
-    doCheck = false;
-  };
-
   codexLatest = pkgs.writeShellScriptBin "codex" ''
     exec ${pkgs.nix}/bin/nix run --refresh github:sadjow/codex-cli-nix -- "$@"
   '';
@@ -222,7 +199,6 @@ in
      jq
      htop
      openconnect
-     pulse-cookie  # This now refers to the variable defined above
      networkmanagerapplet
      zed-editor
      zedNvidia
