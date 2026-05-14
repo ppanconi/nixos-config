@@ -8,6 +8,53 @@
 
   programs.home-manager.enable = true;
 
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+    historyControl = [ "ignoredups" "ignorespace" ];
+    historyFileSize = 20000;
+    historySize = 20000;
+    shellAliases = {
+      c = "clear";
+      grep = "grep --color=auto";
+      l = "ls -alh";
+      la = "ls -A";
+      ll = "ls -lh";
+      ls = "ls --color=auto";
+      rebuild = "sudo nixos-rebuild switch --flake /home/panks/nixos-config#nixos";
+      rebuild-test = "sudo nixos-rebuild test --flake /home/panks/nixos-config#nixos";
+    };
+    initExtra = ''
+      shopt -s autocd cdspell checkwinsize histappend
+      bind "set completion-ignore-case on"
+      bind "set show-all-if-ambiguous on"
+      bind "set colored-stats on"
+    '';
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+    settings = {
+      add_newline = false;
+      character = {
+        success_symbol = "[>](bold green)";
+        error_symbol = "[>](bold red)";
+      };
+      directory = {
+        truncation_length = 3;
+        truncate_to_repo = true;
+      };
+      git_branch.symbol = "git ";
+      nix_shell.symbol = "nix ";
+    };
+  };
+
   xdg.configFile."zed/settings.json".text = builtins.toJSON {
     cursor_blink = true;
     cursor_shape = "bar";
